@@ -1,0 +1,28 @@
+/**
+ * 	animations
+ */
+@keyframes wiggle {
+    from {
+      -webkit-transform: rotateZ(2deg);
+      -moz-transform: rotateZ(2deg);
+      -ms-transform: rotateZ(2deg);
+      -o-transform: rotateZ(2deg);
+      transform: rotateZ(2deg);
+    }
+
+    50% {
+      -webkit-transform: rotateZ(-2deg);
+      -moz-transform: rotateZ(-2deg);
+      -ms-transform: rotateZ(-2deg);
+      -o-transform: rotateZ(-2deg);
+      transform: rotateZ(-2deg);
+    }
+
+    to {
+      -webkit-transform: rotateZ(2deg);
+      -moz-transform: rotateZ(2deg);
+      -ms-transform: rotateZ(2deg);
+      -o-transform: rotateZ(2deg);
+      transform: rotateZ(2deg);
+    }
+}

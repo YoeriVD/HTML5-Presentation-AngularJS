@@ -1,0 +1,22 @@
+<div id="logoContainer">
+    <img src="images/logo.png"/>
+
+    <div id="statusBericht">
+        <div id="statusTekst" ng-if="!klaarMetLaden">
+            <span>Presentatie opstarten</span>
+            <progress id="presentatieLadenProgress"
+                      ng-attr-max="{{ aantalSlides }}"
+                      ng-attr-value="{{ aantalGeladen }}">
+                <p>
+                    - bezig met het laden van de slide -
+                </p>
+
+                <p>
+                    {{ aantalGeladen }} / {{ aantalSlides }}
+                </p>
+            </progress>
+        </div>
+
+        <a id="start" href="#!/slides.html" ng-if="klaarMetLaden">Presentatie geladen, klik om te starten.</a>
+    </div>
+</div>

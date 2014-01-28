@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>DEMO - nieuwe elementen</title>
+</head>
+<body>
+    <section id="meterDemo">
+        <meter id="mijnMeter" min="0" max="100" optimum="50" low="30" high="70" value="0">uw browser ondersteunt dit voor geen meter *padum-tsss*
+        </meter>
+        <div id="buttons">
+            <button id="btnDown">minder</button>
+            <button id="btnUp">meer</button>
+        </div>
+        <style>
+            body {
+                background: lightblue;
+                color: white;
+                font: bold 22px sans-serif;
+            }
+
+            meter {
+                width: 100%;
+            }
+        </style>
+        <script>
+            //elementen ophalen
+            var meter = document.getElementById('mijnMeter');
+            var btnDown = document.getElementById('btnDown');
+            var btnUp = document.getElementById('btnUp');
+            //event handlers koppelen
+            btnDown.onclick = function () {
+                //huidige waarde van de meter, parseInt om zeker te zijn dat de som wordt uitgevoerd
+                var current = parseInt(meter.value);
+                var update = current - 10;
+                //controleren dat de update niet boven het maximum gaat van de meter
+                if (update < meter.min) {
+                    update = meter.min;
+                }
+                //huidige waarde van de meter aanpassen
+                meter.value = update;
+            }
+            btnUp.onclick = function () {
+                var current = parseInt(meter.value);
+                var update = current + 10;
+                if (update > meter.max) {
+                    update = meter.max;
+                }
+                meter.value = update;
+            }
+        </script>
+    </section>
+    <section id="progressDemo">
+        <progress id="mijnProgress" max="100" value="0">geen browser support voor progress
+        </progress>
+        <button id="btnProgressUpdate">progress update</button>
+        <style>
+            progress {
+                width: 100%;
+            }
+        </style>
+        <script>
+            //element ophalen
+            var progress = document.getElementById('mijnProgress');
+            var btnProgressUpdate = document.getElementById('btnProgressUpdate');
+            //event handler
+            btnProgressUpdate.onclick = function () {
+                var update = parseInt(progress.value) + 10;
+                if (update > progress.max) {
+                    update = progress.max;
+                }
+                progress.value = update;
+            }
+
+        </script>
+    </section>
+</body>
+</html>

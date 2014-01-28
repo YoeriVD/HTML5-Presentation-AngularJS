@@ -1,0 +1,10 @@
+body {
+  background: lightblue;
+  color: white;
+  font: bold 22px sans-serif;
+}
+
+
+@import "animations";
+@import "startup";
+@import "slides-list";

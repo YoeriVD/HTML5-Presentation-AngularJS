@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>FileAPI</title>
+    <style>
+        #dropzone {
+            width: 400px;
+            height: 400px;
+            border: solid 5px black;
+        }
+
+            #dropzone:hover {
+                border: dashed 5px black;
+            }
+    </style>
+</head>
+<body>
+    <div id="dropzone">
+    </div>
+    <p id="info">
+    </p>
+
+    <script>
+        var dropzone = document.getElementById('dropzone');
+        var info = document.getElementById('info');
+
+        //stop browser gedrag
+        dropzone.ondragover = function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            return false;
+        }
+
+        dropzone.ondrop = function (e) {
+            //dit zorgt ervoor dat wij het event opvangen en niet een default browser actie
+            e.stopPropagation();
+            e.preventDefault(); 
+
+            if (e.dataTransfer.files.length > 0) {
+                var file = e.dataTransfer.files[0];
+                //enkel images
+                if (file.type.match('image.*')) {
+                    readFile(file);
+                }
+            }
+            return false;
+        }
+        /*
+        * DEMO
+        */
+        function readFile(file) {
+            //file reader maken
+
+            //handler aan filereader hangen
+
+            //filereader starten
+
+        }
+
+        function handleFile(theFile) {
+            // image tonen
+            var img = new Image();
+            img.src = theFile.target.result;
+            img.title = escape(theFile.name);
+            //dropzone leeg maken
+            while (dropzone.hasChildNodes()) {
+                dropzone.removeChild(dropzone.lastChild);
+            }
+            dropzone.appendChild(img);
+        }
+
+    </script>
+</body>
+</html>

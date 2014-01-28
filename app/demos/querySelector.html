@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>querySelector</title>
+    <link rel="stylesheet" href="style/inputs.css" />
+</head>
+
+<body>
+    <script>
+        var button;
+        window.onload = function () {
+            button = document.querySelector("#wissel");
+            button.onclick = function () {
+                //alle elementen met klasse 'input' die binnen een tag zitten met id "old"
+                var oldElements = document.querySelectorAll("#old .input");
+                [].forEach.call(oldElements, function (element) {
+                    element.style.display = "none";
+                });
+            };
+        }
+    </script>
+
+    <div>
+        <button id="wissel">wissel</button>
+    </div>
+    <section id="old">
+        <div class="input">
+            <p>type = tekst</p>
+            <input type="text" />
+        </div>
+        <div class="input">
+            <p>type = password</p>
+            <input type="password" />
+        </div>
+        <div class="input">
+            <p>type = checkbox</p>
+            <input type="checkbox" />
+        </div>
+        <div class="input">
+            <p>type = file</p>
+            <input type="file" />
+        </div>
+        <div class="input">
+            <p>type = radio</p>
+            <input type="radio" name="test" value="ja" />ja
+        <input type="radio" name="test" value="nee" />nee
+        </div>
+        <div class="input">
+            <p>type = hidden</p>
+            <input type="hidden" value="boe!" />
+        </div>
+    </section>
+    <section id="new">
+        <div class="input">
+            <p>type = number</p>
+            <input type="number" />
+        </div>
+        <div class="input">
+            <p>type = email</p>
+            <form action="#">
+                <input type="email" />
+                <input type="submit" title="submit" />
+            </form>
+        </div>
+        <div class="input">
+            <p>type = tel</p>
+            <input type="tel" />
+        </div>
+        <div class="input">
+            <p>type = search</p>
+            <input type="search" />
+        </div>
+        <div class="input">
+            <p>type = range</p>
+            <input type="range" />
+        </div>
+        <div class="input">
+            <p>type = date</p>
+            <input type="date" />
+        </div>
+        <div class="input">
+            <p>type = datetime</p>
+            <input type="datetime" />
+        </div>
+        <div class="input">
+            <p>type = time</p>
+            <input type="time" />
+        </div>
+        <div class="input">
+            <p>type = color</p>
+            <input type="color" />
+        </div>
+        <div class="input">
+            <p>type = url</p>
+            <form action="#">
+                <input type="url" />
+                <input type="submit" title="submit" />
+            </form>
+        </div>
+    </section>
+</body>
+</html>

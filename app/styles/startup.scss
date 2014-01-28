@@ -1,0 +1,54 @@
+#logoContainer {
+  width: 512px;
+  height: 512px;
+  margin: 0 auto;
+}
+
+#logoContainer img {
+  -webkit-animation-name: wiggle;
+  -moz-animation-name: wiggle;
+  -o-animation-name: wiggle;
+  animation-name: wiggle;
+  -webkit-animation-duration: .8s;
+  -moz-animation-duration: .8s;
+  -o-animation-duration: .8s;
+  animation-duration: .8s;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -o-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease;
+  -moz-animation-timing-function: ease;
+  -o-animation-timing-function: ease;
+  animation-timing-function: ease;
+}
+
+#statusBericht {
+  position: relative;
+  text-align: center;
+}
+
+#presentatieLadenProgress {
+  width: 100%;
+}
+
+
+
+
+#start {
+  display: block;
+  margin-top: 10px;
+  padding: 10px;
+  color: inherit;
+  text-decoration: none;
+  border: 1px white solid;
+  -webkit-box-shadow: 2px 2px 1px #888888;
+  box-shadow: 2px 2px 1px #888888;
+
+  &:hover {
+    margin-top: 2px;
+    margin-left: 2px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+}
