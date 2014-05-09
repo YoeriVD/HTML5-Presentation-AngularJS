@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/YoeriVD/HTML5-Presentation-AngularJS.png)](https://travis-ci.org/YoeriVD/HTML5-Presentation-AngularJS)
 HTML5-Presentation-AngularJS
 ============================
 
