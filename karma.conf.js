@@ -23,9 +23,9 @@ module.exports = function (config) {
       'test/mock/**/*.js',
       'test/spec/**/*.js'
     ],
-    proxies: {
-      '/images': 'http://localhost:9000/images'
-    },
+//    proxies: {
+//      '/images': 'http://localhost:9000/images'
+//    },
 
     // list of files / patterns to exclude
     exclude: [],

@@ -33,7 +33,8 @@
     "spyOn": false,
     "waitsFor": false,
     "runs" : false,
-    "FakeEvent": false
+    "FakeEvent": false,
+    "FakeImageEvent": false
   }
 }
 

@@ -33,12 +33,7 @@ describe('presentatieService', function () {
     var expectedResult = 'images/slides/Dia10.JPG';
     expect(location).toBe(expectedResult);
   });
-  /**
-   * for these tests to work, you should enable proxies in the karma config to redirect to the real images:
-   proxies: {
-      '/images': 'http://localhost:9000/images'
-    },
-   */
+
   it('should be able to get all the slides', function () {
     //arrange
     expect(presentatieService.getAantalGeladenSlides()).toBe(0);
@@ -46,9 +41,18 @@ describe('presentatieService', function () {
     var result = null;
     var promise = null;
     var resolved = false;
+    var imgEvent = new FakeImageEvent();
+    imgEvent.target.src = '/images/fakeImage';
+    var imageStub = jasmine.createSpy('imageStub');
+    spyOn(window, 'Image').andReturn(imageStub);
+
     //act
     runs(function () {
       promise = presentatieService.getSlides();
+      //manually trigger the onload event since we won't fetch the actual image
+      for (var i = 0; i < slides; i++) {
+        imageStub.onload(imgEvent);
+      }
       promise.then(function () {
         resolved = true;
         result = presentatieService.getAantalGeladenSlides();
@@ -65,29 +69,21 @@ describe('presentatieService', function () {
     });
   });
 
-  it('should return the url if it already exists', function () {
+  it('should return the same url if it already exists', function () {
     //arrange
     var slideNumber = 10;
-    var slideUrl = null;
+    var slideUrlOnce = null;
+    var slideUrlTwice = null;
     var expectedSlideUrl = 'images/slides/Dia10.JPG';
-    var resolved = false;
     //act
-    runs(function () {
-      var promise = presentatieService.getSlides();
-      promise.then(function () {
-        resolved = true;
-      });
-    });
-    waitsFor(function () {
-      $rootScope.$digest();
-      $rootScope.$apply();
-      return resolved;
-    }, 'the promise to be resolved', 3000);
-    runs(function () {
-      //assert
-      slideUrl = presentatieService.getSlideUrl(slideNumber);
-      expect(slideUrl.indexOf(expectedSlideUrl)).toBeGreaterThan(0);
-    });
+    //call once
+    slideUrlOnce = presentatieService.getSlideUrl(slideNumber);
+    //call twice
+    slideUrlTwice = presentatieService.getSlideUrl(slideNumber);
+    //assert
+    expect(slideUrlOnce.indexOf(slideNumber)).toBeGreaterThan(0);
+    expect(slideUrlOnce).toEqual(expectedSlideUrl);
+    expect(slideUrlOnce).toBe(slideUrlTwice);
   });
 
   it('should be able to clear its list', function () {
@@ -95,9 +91,19 @@ describe('presentatieService', function () {
     expect(presentatieService.getAantalGeladenSlides()).toBe(0);
     var numberOfSlidesAfterFirstLoad = null;
     var numberOfSlidesAfterClear = null;
+    var slides = presentatieService.aantalSlides;
+    var imgEvent = new FakeImageEvent();
+    var imageStub = jasmine.createSpy('imageStub');
+    imgEvent.target.src = '/images/fakeImage';
+    spyOn(window, 'Image').andReturn(imageStub);
+
     //act
     runs(function () {
       var firstPromise = presentatieService.getSlides();
+      //manually trigger the onload event since we won't fetch the actual image
+      for (var i = 0; i < slides; i++) {
+        imageStub.onload(imgEvent);
+      }
       firstPromise.then(function () {
         numberOfSlidesAfterFirstLoad = presentatieService.getAantalGeladenSlides();
         presentatieService.clear();
@@ -116,4 +122,5 @@ describe('presentatieService', function () {
       expect(numberOfSlidesAfterClear).toBe(0);
     });
   });
-});
+})
+;
