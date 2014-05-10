@@ -21,6 +21,8 @@ describe('Controller: MainCtrl', function () {
   it('should clear the presentatieService', function(){
     //arrange
     spyOn(presentatieService, 'clear');
+    //return empty promise so that the actual service is not called, but the controller can still execute
+    spyOn(presentatieService,'getSlides').andReturn($q.defer().promise);
     //act
     $controller('MainCtrl', {
       $scope: scope,

@@ -10,6 +10,8 @@ describe('SlidesCtrl', function () {
     scope, $q, $rootScope, $location,
     presentatieService;
 
+  var deferredGetSlides;
+
   // Initialize the controller and a mock scope
   beforeEach(inject(function (_$controller_, _$rootScope_, _presentatieService_, _$q_, _$location_) {
     $controller = _$controller_;
@@ -18,23 +20,24 @@ describe('SlidesCtrl', function () {
     $location = _$location_;
     presentatieService = _presentatieService_;
     $q = _$q_;
+
+    //controller calls this method upon init, call a fake one to not really load all the image
+    spyOn(presentatieService, 'getSlides').andCallFake(function () {
+      deferredGetSlides = $q.defer();
+      return deferredGetSlides.promise;
+    });
   }));
 
 
   it('should have a copy of the slides', function () {
     //arrange
-    var deferred;
     var fakeSlides = ['', '', ''];
-    spyOn(presentatieService, 'getSlides').andCallFake(function () {
-      deferred = $q.defer();
-      return deferred.promise;
-    });
     //act
     $controller('SlidesCtrl', {
       $scope: scope,
       presentatieService: presentatieService
     });
-    deferred.resolve(fakeSlides);
+    deferredGetSlides.resolve(fakeSlides);
     scope.$root.$digest();
     //assert
     expect(scope.slides[0]).toBe(fakeSlides[0]);
