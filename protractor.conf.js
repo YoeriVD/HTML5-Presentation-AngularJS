@@ -7,8 +7,10 @@ exports.config = {
     'spec/*_spec.js'
   ],
 
-//  sauceUser: 'YoeriVD',
-//  sauceKey: 'fad64f2f-c9d6-4955-8ce3-4f73ceb3f003',
+  //comment out these lines to run the tests locally
+  sauceUser: 'YoeriVD',
+  sauceKey: 'fad64f2f-c9d6-4955-8ce3-4f73ceb3f003',
+
   capabilities: {
     'browserName': 'chrome',
     'chromeOptions': {'args': ['--disable-extensions']},
