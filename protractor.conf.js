@@ -1,13 +1,14 @@
 exports.config = {
   // The address of a running selenium server.
-  seleniumAddress: 'http://localhost:4444/wd/hub', //we want protractor to start the server
+  //seleniumAddress: 'http://localhost:4444/wd/hub', //we want protractor to start the server
 
   // Spec patterns are relative to the location of this config.
   specs: [
     'spec/*_spec.js'
   ],
 
-
+  sauceUser: 'YoeriVD',
+  sauceKey: 'fad64f2f-c9d6-4955-8ce3-4f73ceb3f003',
   capabilities: {
     'browserName': 'chrome',
     'chromeOptions': {'args': ['--disable-extensions']}
