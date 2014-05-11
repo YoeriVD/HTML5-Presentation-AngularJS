@@ -15,8 +15,22 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
+  grunt.loadNpmTasks('grunt-shell');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
+
+    shell: {
+      options: {
+        stdout: true
+      },
+      protractorInstall: {
+        command: 'node ./node_modules/protractor/bin/webdriver-manager update'
+      },
+      npmInstall: {
+        command: 'npm install'
+      }
+    },
 
     // Project settings
     yeoman: {
@@ -88,9 +102,35 @@ module.exports = function (grunt) {
           ]
         }
       },
+      e2e: {
+        options: {
+          port: 9002,
+          base: [
+            '.tmp',
+            'e2e',
+            '<%= yeoman.app %>'
+          ]
+        }
+      },
       dist: {
         options: {
           base: '<%= yeoman.dist %>'
+        }
+      }
+    },
+
+    protractor: {
+      options: {
+        keepAlive: true,
+        configFile: 'protractor.conf.js'
+      },
+      singlerun: {},
+      auto: {
+        keepAlive: true,
+        options: {
+          args: {
+            seleniumPort: 4444
+          }
         }
       }
     },
@@ -386,13 +426,6 @@ module.exports = function (grunt) {
         configFile: 'karma.conf.js',
         singleRun: true
       }
-    },
-    protractor: {
-      options: {
-        keepAlive: true,
-        configFile: 'protractor.conf.js'
-      },
-      run: {}
     }
   });
 
@@ -423,7 +456,7 @@ module.exports = function (grunt) {
     'autoprefixer',
     'connect:test',
     'karma',
-    'protractor:run'
+    'test:e2e'
   ]);
 
   grunt.registerTask('build', [
@@ -448,4 +481,10 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  grunt.registerTask('test:e2e', ['connect:e2e', 'protractor:singlerun']);
+
+  //installation-related
+  grunt.registerTask('install', ['update', 'shell:protractorInstall']);
+  grunt.registerTask('update', ['shell:npmInstall']);
 };

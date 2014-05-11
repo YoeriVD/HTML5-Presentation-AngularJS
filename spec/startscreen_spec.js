@@ -12,6 +12,7 @@ describe('the landing page', function () {
   });
 
   it('should show a button to start the presentation', function () {
+    //todo: shouldn't this check for the value of the progressbar?
     var urlButton = $('#start');
     urlButton.click().then(function () {
       ptor.waitForAngular();

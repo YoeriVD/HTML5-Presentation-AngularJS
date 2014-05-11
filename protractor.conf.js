@@ -7,20 +7,16 @@ exports.config = {
     'spec/*_spec.js'
   ],
 
-  //comment out these lines to run the tests locally
-  sauceUser: 'YoeriVD',
-  sauceKey: 'fad64f2f-c9d6-4955-8ce3-4f73ceb3f003',
-
   capabilities: {
-    'browserName': 'chrome',
-    'chromeOptions': {'args': ['--disable-extensions']},
+    'browserName': 'firefox',
+    //'chromeOptions': {'args': ['--disable-extensions']},
     'name': 'HTML5-Presentation-AngularJS Protractor Tests'
   },
 
 
   // A base URL for your application under test. Calls to protractor.get()
   // with relative paths will be prepended with this.
-  baseUrl: 'http://localhost:9001',
+  baseUrl: 'http://localhost:9002',
 
   jasmineNodeOpts: {
     onComplete: null,
